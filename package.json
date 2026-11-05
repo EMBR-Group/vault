@@ -1,0 +1,25 @@
+{
+  "name": "@embr/vault",
+  "version": "0.1.0",
+  "description": "Run one command with secrets from Bitwarden Secrets Manager, after Touch ID. Holds no secrets itself.",
+  "license": "MIT",
+  "type": "module",
+  "repository": "github:EMBR-Group/vault",
+  "engines": { "node": ">=22" },
+  "exports": {
+    ".": { "types": "./dist/index.d.ts", "default": "./dist/index.js" }
+  },
+  "bin": { "embr-vault": "dist/bin.js" },
+  "files": ["dist"],
+  "scripts": {
+    "build": "rm -rf dist && tsc -p tsconfig.build.json && chmod 755 dist/bin.js",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "node --test test/*.test.ts",
+    "check": "pnpm typecheck && pnpm test && pnpm build && git diff --exit-code -- dist"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.8.0"
+  },
+  "packageManager": "pnpm@10.28.0"
+}
